@@ -1,318 +1,221 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09090f">
-<title>NX7 SENSI 2.0</title>
+<meta name="theme-color" content="#0a0a0d">
+<meta name="description" content="NX7 SENSI — encontre uma configuração inicial personalizada para seu estilo no Free Fire.">
+<title>NX7 SENSI | Sua mira, seu estilo</title>
 <style>
-:root{--bg:#09090f;--panel:#171321;--purple:#a855f7;--pink:#ec4899;--text:#faf7ff;--muted:#b6acc8;--border:#382b49}
+:root{--bg:#09090c;--panel:#141419;--panel2:#1b1b22;--red:#ff303b;--red2:#b70e21;--text:#f7f7fa;--muted:#a4a4b0;--line:#303039;--green:#49d69b}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#301448,var(--bg) 55%);color:var(--text);font-family:system-ui,Arial,sans-serif;min-height:100vh}
-header{text-align:center;padding:28px 16px 12px}
-.logo{margin:auto;width:68px;height:68px;border-radius:20px;background:linear-gradient(135deg,var(--purple),var(--pink));display:grid;place-items:center;font-size:27px;font-weight:1000;box-shadow:0 0 30px #a855f755}
-h1{font-size:28px;margin:12px 0 5px}
-h1 span{color:#d8a6ff}
-.subtitle{font-size:14px;color:var(--muted);max-width:360px;margin:auto}
-main{width:min(100% - 22px,570px);margin:18px auto 40px}
-.card{background:#171321f5;border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:14px}
-.tag{display:inline-block;background:#382048;color:#eccdff;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800}
-.card h2{font-size:19px;margin:13px 0 6px}
-.help,.small{font-size:13px;color:var(--muted);line-height:1.55}
-.field{margin:19px 0}
-.question,label.field-label{display:block;font-size:14px;font-weight:700;margin-bottom:10px}
-input[type=text],select{width:100%;min-height:46px;border:1px solid #493957;background:#0e0c15;color:white;border-radius:11px;padding:12px;font-size:15px}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.option{position:relative;margin:0}
-.option input{position:absolute;opacity:0}
-.option span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:10px;border:1px solid #403248;border-radius:11px;background:#100e17;font-size:13px;line-height:1.35;cursor:pointer}
-.option input:checked+span{border-color:var(--purple);background:#6d28a533;box-shadow:inset 0 0 0 1px var(--purple)}
-button{width:100%;padding:14px;border:0;border-radius:12px;background:linear-gradient(100deg,#9333ea,#db2777);color:white;font-size:15px;font-weight:850;cursor:pointer}
-.secondary{background:#292033;border:1px solid #493957;margin-top:9px}
-.progress{height:5px;background:#382b49;border-radius:9px;overflow:hidden;margin:14px 0 7px}
-.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--pink));transition:.2s}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.stat{background:#0e0c15;border:1px solid #382b49;border-radius:12px;padding:13px;min-width:0}
-.stat label{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}
-.stat strong{font-size:26px;color:#dfb7ff}
-.stat input{width:100%;accent-color:var(--purple);margin-top:12px}
-.tip{font-size:13px;color:#ded5ec;line-height:1.65}
-.result-title{text-align:center}
-.result-title h2{font-size:23px}
-.result-title p{font-size:13px;color:var(--muted)}
-#result{display:none}
-.notice{font-size:12px;line-height:1.6;color:var(--muted);background:#100e17;padding:12px;border-radius:10px}
-footer{text-align:center;color:#8e849c;font-size:12px;padding:10px 15px 28px}
-@media(max-width:350px){.card{padding:13px}.options{gap:7px}.option span{font-size:12px;padding:8px}.stat{padding:9px}}
+body{margin:0;background:radial-gradient(ellipse at top,#251015 0,#09090c 48%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(100% - 28px,760px);margin:auto;padding:20px 0 40px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#ff414b,#8c0717);display:grid;place-items:center;font-weight:1000;font-size:17px;box-shadow:0 8px 26px #ff303b30}
+.brand strong{display:block;letter-spacing:1.5px;font-size:18px}
+.brand small{color:var(--muted);font-size:11px;letter-spacing:2px}
+.pill{border:1px solid #5b2229;background:#251015;color:#ff9ba1;border-radius:99px;padding:7px 10px;font-size:11px;font-weight:800}
+.hero{padding:24px 0 22px}
+.eyebrow{color:#ff737b;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+h1{font-size:clamp(32px,8vw,52px);line-height:1.04;margin:10px 0 12px;letter-spacing:-1.5px}
+h1 span{color:var(--red)}
+p{line-height:1.6;color:var(--muted);margin:0}
+.hero p{max-width:540px}
+.notice{margin-top:18px;border:1px solid #402128;background:#1c1014;padding:12px 14px;border-radius:13px;color:#d6bfc2;font-size:12px;line-height:1.5}
+.card{background:linear-gradient(145deg,#17171d,#111115);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:16px;box-shadow:0 12px 30px #0002}
+.cardhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.cardhead h2{font-size:19px;margin:0}
+.steptext{color:var(--muted);font-size:12px}
+.progress{height:5px;background:#2b2b33;border-radius:99px;overflow:hidden;margin:0 0 20px}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--red2),var(--red));transition:width .25s}
+.question{font-size:21px;font-weight:850;line-height:1.25;margin:0 0 7px}
+.hint{font-size:13px;margin-bottom:17px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{border:1px solid #383840;background:#1a1a21;color:var(--text);border-radius:13px;padding:14px 12px;text-align:left;min-height:67px;transition:.15s}
+.opt strong{display:block;font-size:14px}
+.opt small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+.opt.selected{border-color:var(--red);background:#32151b;box-shadow:inset 0 0 0 1px #ff303b50}
+.field{display:flex;flex-direction:column;gap:8px;margin:15px 0}
+label{font-weight:750;font-size:13px}
+select,input[type=text]{width:100%;background:#101015;border:1px solid #393943;color:var(--text);padding:13px;border-radius:12px;outline:none}
+select:focus,input:focus{border-color:var(--red)}
+.actions{display:flex;gap:10px;margin-top:20px}
+.btn{border:0;border-radius:12px;padding:14px 16px;font-weight:850;flex:1}
+.primary{background:linear-gradient(100deg,#ff303b,#c41027);color:white;box-shadow:0 7px 20px #ff303b25}
+.secondary{background:#24242c;color:#eee;border:1px solid #393943}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.hidden{display:none!important}
+.mini{font-size:12px;color:var(--muted);margin-top:12px}
+.result-title{font-size:29px;margin:6px 0}
+.result-sub{font-size:13px}
+.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.stat{background:#1d1d25;border:1px solid #363640;border-radius:14px;padding:14px}
+.stat span{display:block;font-size:12px;color:var(--muted);margin-bottom:8px}
+.stat strong{font-size:25px}
+.stat small{display:block;color:#ff9ba1;font-size:11px;margin-top:4px}
+.result-block{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.result-block h3{font-size:15px;margin:0 0 10px}
+.result-block p,.result-block li{font-size:13px}
+.result-block ul{padding-left:20px;margin:8px 0}
+.tune-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.tune-options button{padding:12px 9px;border:1px solid #3b3b45;background:#202027;color:#fff;border-radius:12px;font-weight:750;font-size:12px}
+.tune-options button:hover{border-color:var(--red)}
+.saved-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}
+footer{text-align:center;color:#777783;font-size:11px;padding:25px 8px 0;line-height:1.7}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#23232a;border:1px solid #494953;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 10px 30px #0008;z-index:5;font-size:13px;max-width:90%;text-align:center}
+@media(max-width:430px){.wrap{width:min(100% - 22px,760px)}.card{padding:16px}.options{gap:8px}.opt{padding:12px 10px}.question{font-size:19px}.result-grid{gap:8px}.stat{padding:12px}.stat strong{font-size:23px}.pill{font-size:10px}}
 </style>
 </head>
 <body>
+<div class="wrap">
 <header>
-<div class="logo">NX7</div>
-<h1>NX7 <span>SENSI 2.0</span></h1>
-<p class="subtitle">Uma configuração inicial baseada no seu celular e no seu jeito de puxar a mira.</p>
+  <div class="brand"><div class="logo">NX7</div><div><strong>NX7 SENSI</strong><small>SUA MIRA, SEU ESTILO</small></div></div>
+  <div class="pill">BETA • GRATUITO</div>
 </header>
-
-<main>
-<section id="quiz">
-<div class="card">
-<span class="tag">TESTE PERSONALIZADO</span>
-<h2>Vamos descobrir seu perfil</h2>
-<p class="help">Responda naturalmente. O resultado será uma sugestão inicial para testar no treinamento.</p>
-<div class="progress"><div id="bar"></div></div>
-<p class="small" id="counter">0 de 10 perguntas respondidas</p>
-
-<div class="field">
-<label class="field-label" for="phone">1. Qual é o modelo do seu celular?</label>
-<input id="phone" type="text" placeholder="Ex.: Motorola Edge 70 Fusion">
-<p class="small">Escreva o modelo que você conhece.</p>
-</div>
-
-<div class="field">
-<label class="field-label" for="refresh">2. Qual taxa de atualização você usa?</label>
-<select id="refresh">
-<option value="unknown">Não sei</option>
-<option value="60">60 Hz</option>
-<option value="90">90 Hz</option>
-<option value="120">120 Hz</option>
-<option value="144">144 Hz ou mais</option>
-</select>
-</div>
-
-<div class="field">
-<div class="question">3. Quando você puxa a mira, como ela responde?</div>
-<div class="options">
-<label class="option"><input type="radio" name="speed" value="slow"><span>Demora para subir</span></label>
-<label class="option"><input type="radio" name="speed" value="fast"><span>Sobe rápido demais</span></label>
-<label class="option"><input type="radio" name="speed" value="medium"><span>Velocidade equilibrada</span></label>
-<label class="option"><input type="radio" name="speed" value="variable"><span>Muda bastante</span></label>
-</div>
-</div>
-
-<div class="field">
-<div class="question">4. Como é a força do seu puxão?</div>
-<div class="options">
-<label class="option"><input type="radio" name="force" value="light"><span>Leve e curtinho</span></label>
-<label class="option"><input type="radio" name="force" value="medium"><span>Força média</span></label>
-<label class="option"><input type="radio" name="force" value="strong"><span>Forte e comprido</span></label>
-<label class="option"><input type="radio" name="force" value="mixed"><span>Depende do momento</span></label>
-</div>
-</div>
-
-<div class="field">
-<div class="question">5. Onde a mira costuma parar?</div>
-<div class="options">
-<label class="option"><input type="radio" name="aim" value="low"><span>No peito ou abaixo</span></label>
-<label class="option"><input type="radio" name="aim" value="head"><span>Na altura da cabeça</span></label>
-<label class="option"><input type="radio" name="aim" value="over"><span>Passa da cabeça</span></label>
-<label class="option"><input type="radio" name="aim" value="unstable"><span>Varia muito</span></label>
-</div>
-</div>
-
-<div class="field">
-<div class="question">6. Como você costuma arrastar o dedo?</div>
-<div class="options">
-<label class="option"><input type="radio" name="control" value="short"><span>Movimentos curtos</span></label>
-<label class="option"><input type="radio" name="control" value="long"><span>Arrastos longos</span></label>
-<label class="option"><input type="radio" name="control" value="mixed"><span>Misturo os dois</span></label>
-<label class="option"><input type="radio" name="control" value="learning"><span>Ainda estou aprendendo</span></label>
-</div>
-</div>
-
-<div class="field">
-<div class="question">7. Qual tamanho de botão de tiro você prefere?</div>
-<div class="options">
-<label class="option"><input type="radio" name="button" value="small"><span>Pequeno</span></label>
-<label class="option"><input type="radio" name="button" value="medium"><span>Médio</span></label>
-<label class="option"><input type="radio" name="button" value="large"><span>Grande</span></label>
-<label class="option"><input type="radio" name="button" value="unknown"><span>Não sei ainda</span></label>
-</div>
-</div>
-
-<div class="field">
-<div class="question">8. Qual problema acontece mais?</div>
-<div class="options">
-<label class="option"><input type="radio" name="problem" value="slow"><span>A mira não acompanha</span></label>
-<label class="option"><input type="radio" name="problem" value="over"><span>Passa do alvo</span></label>
-<label class="option"><input type="radio" name="problem" value="shake"><span>A mira fica instável</span></label>
-<label class="option"><input type="radio" name="problem" value="ok"><span>Quero só melhorar</span></label>
-</div>
-</div>
-
-<div class="field">
-<div class="question">9. Como você sente a resposta da tela?</div>
-<div class="options">
-<label class="option"><input type="radio" name="touch" value="fast"><span>Muito rápida</span></label>
-<label class="option"><input type="radio" name="touch" value="normal"><span>Equilibrada</span></label>
-<label class="option"><input type="radio" name="touch" value="slow"><span>Parece demorar</span></label>
-<label class="option"><input type="radio" name="touch" value="unknown"><span>Não sei dizer</span></label>
-</div>
-</div>
-
-<div class="field">
-<div class="question">10. Qual é sua maior dificuldade?</div>
-<div class="options">
-<label class="option"><input type="radio" name="goal" value="rise"><span>Fazer a mira subir</span></label>
-<label class="option"><input type="radio" name="goal" value="precision"><span>Ter mais precisão</span></label>
-<label class="option"><input type="radio" name="goal" value="stability"><span>Parar de passar do alvo</span></label>
-<label class="option"><input type="radio" name="goal" value="consistency"><span>Manter a mira consistente</span></label>
-</div>
-</div>
-
-<button id="generate">GERAR MINHA SENSIBILIDADE</button>
-<p class="small">Respostas desconhecidas podem ficar sem selecionar.</p>
-</div>
+<section class="hero">
+  <div class="eyebrow">PERSONALIZAÇÃO INTELIGENTE</div>
+  <h1>Encontre sua <span>melhor sensi.</span></h1>
+  <p>Responda algumas perguntas sobre seu celular e seu jeito de jogar. O NX7 monta uma configuração inicial para você testar e ajustar.</p>
+  <div class="notice">⚠️ Nenhum site consegue garantir capa ou sensibilidade perfeita para todo mundo. Use o resultado como ponto de partida e teste no treinamento.</div>
 </section>
 
-<section id="result">
-<div class="card">
-<div class="result-title">
-<span class="tag">SEU PERFIL NX7</span>
-<h2>Configuração recomendada</h2>
-<p id="profile"></p>
-</div>
-<div class="stats" id="stats"></div>
-
-<div class="field">
-<label class="field-label" for="buttonSize">Tamanho do botão de tiro</label>
-<div class="stat">
-<strong id="buttonValue">40%</strong>
-<input id="buttonSize" type="range" min="20" max="70" value="40">
-<p class="small">Ajuste conforme seu conforto.</p>
-</div>
-</div>
-
-<div class="field">
-<label class="field-label" for="general">Sensibilidade geral</label>
-<div class="stat">
-<strong id="generalValue">150</strong>
-<input id="general" type="range" min="0" max="200" value="150">
-<p class="small">Arraste para experimentar ajustes.</p>
-</div>
-</div>
-
-<h2>Como testar sua configuração</h2>
-<p class="tip" id="advice"></p>
-<div class="notice">Estas configurações são sugestões calculadas pelas suas respostas, não medições exatas do aparelho. O resultado pode variar conforme a versão do Free Fire, as opções disponíveis e a resposta da tela.</div>
-<button class="secondary" id="recalculate">RECALCULAR CONFIGURAÇÃO</button>
-<button class="secondary" id="restart">FAZER O TESTE NOVAMENTE</button>
-<button class="secondary" id="share">COPIAR MINHAS CONFIGURAÇÕES</button>
-</div>
+<section id="quiz" class="card">
+  <div class="cardhead"><h2>Vamos conhecer seu estilo</h2><span id="stepText" class="steptext">Etapa 1 de 8</span></div>
+  <div class="progress"><div id="progressBar"></div></div>
+  <div id="questionArea"></div>
+  <div class="actions"><button id="backBtn" class="btn secondary" type="button">Voltar</button><button id="nextBtn" class="btn primary" type="button" disabled>Continuar →</button></div>
+  <div class="mini">Dica: responda pensando no que acontece normalmente nas suas partidas.</div>
 </section>
-</main>
 
-<footer>NX7 SENSI 2.0 · Feito para a comunidade Free Fire</footer>
+<section id="result" class="card hidden" aria-live="polite">
+  <div class="eyebrow">SEU PERFIL NX7</div>
+  <h2 class="result-title">Sua configuração inicial</h2>
+  <p id="resultIntro" class="result-sub"></p>
+  <div id="stats" class="result-grid"></div>
+  <div class="result-block"><h3>🎯 Como começar a testar</h3><ul id="tips"></ul></div>
+  <div class="result-block"><h3>🛠️ Como está sua mira?</h3><p>Escolha o que acontece durante o puxão. Vamos ajustar a configuração atual.</p><div class="tune-options" style="margin-top:12px">
+    <button data-tune="over">Passa da cabeça</button><button data-tune="under">Fica abaixo da cabeça</button><button data-tune="slow">Está lenta</button><button data-tune="fast">Está rápida demais</button><button data-tune="shake">Fica tremendo</button><button data-tune="good">Está boa assim</button>
+  </div><p id="tuneFeedback" class="mini"></p></div>
+  <div class="result-block"><h3>📋 Sua configuração</h3><p id="copySummary"></p></div>
+  <div class="actions"><button id="copyBtn" class="btn primary">Copiar configuração</button><button id="saveBtn" class="btn secondary">Salvar no aparelho</button></div>
+  <div class="actions"><button id="redoBtn" class="btn secondary">Refazer perguntas</button><button id="shareBtn" class="btn secondary">Compartilhar</button></div>
+</section>
+
+<section id="savedCard" class="card hidden">
+  <div class="cardhead"><h2>Configurações salvas</h2><button id="clearSaved" class="btn secondary" style="flex:0;padding:8px 10px;font-size:12px">Limpar</button></div>
+  <div id="savedList"></div>
+</section>
+
+<section class="card">
+  <div class="cardhead"><h2>Como usar a sensi</h2><span>3 passos</span></div>
+  <p>1. Coloque os valores recomendados nas configurações do jogo.</p>
+  <p style="margin-top:8px">2. Entre no modo treinamento e teste com suas armas habituais.</p>
+  <p style="margin-top:8px">3. Mude um ajuste de cada vez. Se necessário, volte ao NX7 e use a correção de mira.</p>
+</section>
+<footer>NX7 SENSI • Projeto independente feito para ajudar na personalização.<br>Não é afiliado, patrocinado ou aprovado pela Garena. Os nomes e opções do jogo podem mudar com as atualizações.</footer>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
 
 <script>
+const questions = [
+ {key:"phoneBrand",title:"Qual é a marca do seu celular?",hint:"Isso ajuda a identificar seu aparelho.",type:"select",options:[
+  ["motorola","Motorola"],["samsung","Samsung"],["xiaomi","Xiaomi / Redmi / POCO"],["apple","iPhone"],["realme","Realme"],["infinix","Infinix"],["tecno","Tecno"],["other","Outra marca"]]},
+ {key:"phoneModel",title:"Qual é o modelo do seu celular?",hint:"Se não souber o nome exato, escolha a opção mais próxima.",type:"text",placeholder:"Ex.: Moto Edge 70 Fusion",fallback:"Não informado"},
+ {key:"touch",title:"Como a tela responde quando você desliza o dedo?",hint:"Isso é diferente da velocidade do seu movimento. Escolha o que você sente no jogo.",type:"options",options:[
+  ["soft","Parece lenta","Preciso arrastar mais para a mira acompanhar"],["normal","Normal","A mira acompanha mais ou menos o dedo"],["sensitive","Muito sensível","Um toque pequeno já move bastante a mira"]]},
+ {key:"drag",title:"Como você costuma puxar a mira?",hint:"Pensa no movimento que faz com o dedo.",type:"options",options:[
+  ["short","Movimento curto","Arrasto pouco o dedo"],["long","Movimento longo","Arrasto bastante o dedo"],["mixed","Depende da situação","Misturo os dois"]]},
+ {key:"speed",title:"Seu dedo costuma se mover como?",hint:"Escolha o que parece mais natural para você.",type:"options",options:[
+  ["slow","Devagar","Prefiro controlar o movimento"],["medium","Em velocidade média","Equilíbrio entre controle e rapidez"],["fast","Rápido","Faço movimentos rápidos"]]},
+ {key:"problem",title:"O que acontece mais com sua mira?",hint:"Se ainda não sabe, escolha a opção mais parecida.",type:"options",options:[
+  ["over","Passa da cabeça","A mira sobe demais"],["under","Fica abaixo da cabeça","A mira não sobe o suficiente"],["body","Fica no peito/corpo","Tenho dificuldade para subir"],["shake","Fica instável","Passa de um lado para outro"],["ok","Já fica perto do alvo","Quero refinar a configuração"]]},
+ {key:"fingers",title:"Quantos dedos você usa para jogar?",hint:"Considere os dedos que usa nos controles.",type:"options",options:[
+  ["2","2 dedos","Dois polegares"],["3","3 dedos","Uso mais um dedo"],["4","4 dedos","Controles com quatro dedos"],["5plus","5 ou mais","Layout com vários dedos"]]},
+ {key:"button",title:"Qual tamanho de botão combina com você?",hint:"Não existe tamanho perfeito para todo mundo.",type:"options",options:[
+  ["small","Pequeno","Ocupa menos espaço"],["medium","Médio","Um equilíbrio"],["large","Grande","Mais área para tocar"]]},
+ {key:"style",title:"O que você valoriza mais nas partidas?",hint:"Isso ajuda a equilibrar a recomendação.",type:"options",options:[
+  ["control","Controle e precisão","Prefiro movimentos previsíveis"],["balanced","Equilíbrio","Quero rapidez sem perder controle"],["speed","Rapidez para subir a mira","Gosto de respostas rápidas"]]}
+];
+let answers={}, current=0, config=null, baseConfig=null, tuneHistory=[];
 const $=id=>document.getElementById(id);
-const questions=["speed","force","aim","control","button","problem","touch","goal"];
-const read=name=>document.querySelector('input[name="'+name+'"]:checked')?.value||"";
-function answersCount(){
- let n=questions.filter(q=>read(q)).length;
- $("counter").textContent=n+" de 8 perguntas respondidas";
- $("bar").style.width=(n/8*100)+"%";
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function showToast(msg){const t=$("toast");t.textContent=msg;t.classList.remove("hidden");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.add("hidden"),2400);}
+function renderQuestion(){
+ const q=questions[current]; $("stepText").textContent=`Etapa ${current+1} de ${questions.length}`;$("progressBar").style.width=`${((current+1)/questions.length)*100}%`;
+ let html=`<h3 class="question">${q.title}</h3><p class="hint">${q.hint}</p>`;
+ if(q.type==="select"){
+  html+=`<div class="field"><label for="answerSelect">Marca</label><select id="answerSelect"><option value="">Selecione sua marca</option>${q.options.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join("")}</select></div>`;
+ } else if(q.type==="text"){
+  html+=`<div class="field"><label for="answerText">Modelo do aparelho</label><input id="answerText" type="text" maxlength="80" placeholder="${q.placeholder}" autocomplete="off"></div><p class="mini">O modelo fica registrado no resultado. O site não consegue medir automaticamente o toque nem o desempenho real só pelo nome do aparelho.</p>`;
+ } else {
+  html+=`<div class="options">${q.options.map(o=>`<button type="button" class="opt ${answers[q.key]===o[0]?"selected":""}" data-value="${o[0]}"><strong>${o[1]}</strong><small>${o[2]}</small></button>`).join("")}</div>`;
+ }
+ $("questionArea").innerHTML=html;
+ if(q.type==="select"){const el=$("answerSelect");el.value=answers[q.key]||"";el.addEventListener("change",()=>{answers[q.key]=el.value;updateNext();});}
+ if(q.type==="text"){const el=$("answerText");el.value=answers[q.key]||"";el.addEventListener("input",()=>{answers[q.key]=el.value;updateNext();});}
+ $("questionArea").querySelectorAll("[data-value]").forEach(b=>b.addEventListener("click",()=>{answers[q.key]=b.dataset.value;renderQuestion();}));
+ $("backBtn").disabled=current===0;$("backBtn").style.opacity=current===0?".35":"1";
+ $("nextBtn").textContent=current===questions.length-1?"Gerar minha sensi →":"Continuar →";updateNext();
 }
-document.querySelectorAll('input[type=radio]').forEach(el=>el.addEventListener("change",answersCount));
-
-function calculate(){
- const a={
- phone:$("phone").value.trim(),
- refresh:$("refresh").value,
- speed:read("speed"),force:read("force"),aim:read("aim"),
- control:read("control"),button:read("button"),
- problem:read("problem"),touch:read("touch"),goal:read("goal")
- };
- let general=150, redDot=140, scope2=130, scope4=115, sniper=75, freeLook=120;
- const adjust=(key,value)=>{if(a[key]===value)return true;return false};
- if(adjust("speed","slow"))general+=15;
- if(adjust("speed","fast"))general-=15;
- if(adjust("speed","variable"))general-=5;
- if(adjust("force","light"))general+=8;
- if(adjust("force","strong"))general-=8;
- if(adjust("aim","low"))general+=10;
- if(adjust("aim","over"))general-=12;
- if(adjust("aim","unstable"))general-=7;
- if(adjust("problem","slow"))general+=10;
- if(adjust("problem","over"))general-=12;
- if(adjust("problem","shake"))general-=10;
- if(adjust("touch","fast"))general-=10;
- if(adjust("touch","slow"))general+=8;
- if(adjust("control","short"))general-=3;
- if(adjust("control","long"))general+=5;
- if(adjust("goal","rise"))general+=7;
- if(adjust("goal","precision"))general-=5;
- if(adjust("goal","stability"))general-=8;
- if(a.refresh==="60")general-=3;
- if(a.refresh==="120"||a.refresh==="144")general+=2;
- general=Math.max(70,Math.min(200,general));
- redDot=Math.max(60,Math.min(200,general-8));
- scope2=Math.max(50,Math.min(200,general-18));
- scope4=Math.max(40,Math.min(200,general-30));
- sniper=Math.max(20,Math.min(150,Math.round(general*.52)));
- freeLook=Math.max(50,Math.min(200,general-10));
- let b=40;
- if(a.button==="small")b=35;
- if(a.button==="medium")b=45;
- if(a.button==="large")b=55;
- if(a.button==="unknown")b=40;
- $("profile").textContent=(a.phone||"Seu celular")+
- " · perfil "+(a.speed==="fast"?"resposta rápida":a.speed==="slow"?"puxada lenta":a.speed==="medium"?"equilibrado":"personalizado");
- $("stats").innerHTML="";
- const values=[
- ["Geral",general],["Ponto vermelho",redDot],
- ["Mira 2x",scope2],["Mira 4x",scope4],
- ["Mira AWM",sniper],["Olhadinha",freeLook]
- ];
- values.forEach(([name,value])=>{
- const box=document.createElement("div");
- box.className="stat";
- const label=document.createElement("label");
- label.textContent=name;
- const strong=document.createElement("strong");
- strong.textContent=value;
- box.append(label,strong);
- $("stats").appendChild(box);
- });
- $("general").value=general;
- $("generalValue").textContent=general;
- $("buttonSize").value=b;
- $("buttonValue").textContent=b+"%";
- let tips=[];
- if(a.aim==="low"||a.problem==="slow")tips.push("Se a mira continuar abaixo do alvo, aumente a Geral em 3 a 5 pontos por vez.");
- if(a.aim==="over"||a.problem==="over")tips.push("Se a mira continuar passando do alvo, diminua a Geral em 3 a 5 pontos por vez.");
- if(a.problem==="shake"||a.aim==="unstable")tips.push("Priorize movimentos controlados e pequenos ajustes, sem mudar várias opções ao mesmo tempo.");
- if(a.touch==="fast")tips.push("Como a tela parece rápida, teste primeiro a configuração sugerida e evite aumentar tudo de uma vez.");
- if(!tips.length)tips.push("Treine por alguns minutos com a configuração sugerida. Faça pequenas mudanças e compare o controle da mira.");
- tips.push("Mantenha as outras configurações iguais durante cada teste para perceber o que realmente ajudou.");
- $("advice").textContent=tips.join(" ");
- $("quiz").style.display="none";
- $("result").style.display="block";
- window.scrollTo({top:0,behavior:"smooth"});
+function updateNext(){const q=questions[current];let v=answers[q.key];$("nextBtn").disabled=q.key==="phoneModel"?false:!v;}
+$("backBtn").addEventListener("click",()=>{if(current>0){current--;renderQuestion();}});
+$("nextBtn").addEventListener("click",()=>{const q=questions[current];if(q.key==="phoneModel"&&!String(answers[q.key]||"").trim())answers[q.key]="Não informado";if(current<questions.length-1){current++;renderQuestion();}else generateResult();});
+function clamp(n,min=0,max=200){return Math.max(min,Math.min(max,Math.round(n)));}
+function generateResult(){
+ const a=answers;
+ // Cálculo determinístico: não há sorteio. Cada resposta altera valores específicos.
+ // Marca/modelo identificam o aparelho, mas não fingimos medir o toque automaticamente.
+ const drag={short:8,long:-7,mixed:0}[a.drag] ?? 0;
+ const speed={slow:-10,medium:0,fast:7}[a.speed] ?? 0;
+ const touch={soft:8,normal:0,sensitive:-9}[a.touch] ?? 0;
+ const style={control:-8,balanced:0,speed:7}[a.style] ?? 0;
+ const problem={over:-12,under:10,body:7,shake:-15,ok:0}[a.problem] ?? 0;
+ const fingers={"2":-2,"3":0,"4":2,"5plus":1}[a.fingers] ?? 0;
+ const button={small:2,medium:0,large:-2}[a.button] ?? 0;
+ // Geral e Red Dot respondem mais ao controle do puxão e ao problema informado.
+ const general=clamp(150 + drag + speed + touch + style + problem + fingers + button,80,200);
+ const red=clamp(145 + Math.round(drag*.8) + Math.round(speed*.8) + touch + style + problem + button,75,200);
+ const x2=clamp(138 + Math.round(drag*.45) + Math.round(speed*.45) + Math.round(touch*.55) + Math.round(style*.65) + Math.round(problem*.5),70,200);
+ const x4=clamp(122 + Math.round(drag*.2) + Math.round(speed*.25) + Math.round(touch*.3) + Math.round(style*.35) + Math.round(problem*.25),50,200);
+ const sniper=clamp(82 - Math.round(speed*.25) - Math.round(touch*.2) - Math.round(style*.3) + Math.round(problem*.1),20,150);
+ const free=clamp(120 + Math.round(speed*.25) + Math.round(touch*.25) + Math.round(style*.35),50,200);
+ const buttonSize={small:35,medium:45,large:55}[a.button] ?? 45;
+ const brands={motorola:"Motorola",samsung:"Samsung",xiaomi:"Xiaomi / Redmi / POCO",apple:"iPhone",realme:"Realme",infinix:"Infinix",tecno:"Tecno",other:"Outra marca"};
+ const profile=a.style==="control" ? "Controle" : a.style==="speed" ? "Resposta rápida" : "Equilibrado";
+ config={general,red,x2,x4,sniper,free,buttonSize,phoneBrand:brands[a.phoneBrand]||"Não informado",phoneModel:(a.phoneModel||"").trim()||"Não informado",updatedAt:new Date().toLocaleString("pt-BR"),profile};
+ baseConfig={...config};tuneHistory=[];
+ $("quiz").classList.add("hidden");$("result").classList.remove("hidden");renderResult();$("result").scrollIntoView({behavior:"smooth",block:"start"});
 }
-$("generate").addEventListener("click",calculate);
-$("general").addEventListener("input",()=>{
- $("generalValue").textContent=$("general").value;
-});
-$("buttonSize").addEventListener("input",()=>{
- $("buttonValue").textContent=$("buttonSize").value+"%";
-});
-$("recalculate").addEventListener("click",calculate);
-$("restart").addEventListener("click",()=>{
- $("result").style.display="none";
- $("quiz").style.display="block";
- window.scrollTo({top:0,behavior:"smooth"});
-});
-$("share").addEventListener("click",()=>{
- const vals=[...$("stats").querySelectorAll(".stat")].map(s=>s.querySelector("label").textContent+": "+s.querySelector("strong").textContent);
- vals.push("Botão de tiro: "+$("buttonSize").value+"%");
- vals.push("NX7 SENSI 2.0");
- const text=vals.join("\n");
- if(navigator.clipboard&&window.isSecureContext){
- navigator.clipboard.writeText(text).then(()=>alert("Configurações copiadas!")).catch(()=>prompt("Copie suas configurações:",text));
- }else{prompt("Copie suas configurações:",text);}
-});
-answersCount();
-</script>
-</body>
-</html>
+function configText(){return `NX7 SENSI — configuração inicial\nCelular: ${config.phoneBrand} ${config.phoneModel}\nPerfil: ${config.profile}\nGeral: ${config.general}\nRed Dot: ${config.red}\nMira 2x: ${config.x2}\nMira 4x: ${config.x4}\nMira AWM/Sniper: ${config.sniper}\nOlhadinha: ${config.free}\nBotão de tiro sugerido: ${config.buttonSize}%\n\nValores de partida: teste no treinamento e ajuste conforme sua resposta.`;}
+function renderResult(){
+ const touchLabel=({soft:"toque percebido como lento",normal:"toque percebido como normal",sensitive:"toque percebido como muito sensível"})[answers.touch]||"resposta de toque não informada";
+ $("resultIntro").textContent=`Perfil ${config.profile.toLowerCase()} • ${config.phoneBrand} ${config.phoneModel}. Consideramos sua puxada, velocidade, ${touchLabel} e o comportamento da mira. É uma estimativa inicial, não uma medição automática do aparelho.`;
+ const stats=[["Geral",config.general,"Sensibilidade geral"],["Red Dot",config.red,"Mira de ponto vermelho"],["Mira 2x",config.x2,"Zoom 2x"],["Mira 4x",config.x4,"Zoom 4x"],["AWM / Sniper",config.sniper,"Ajuste inicial"],["Olhadinha",config.free,"Visão livre"],["Botão de tiro",config.buttonSize+"%","Tamanho sugerido"]];
+ $("stats").innerHTML=stats.map(s=>`<div class="stat"><span>${s[0]}</span><strong>${s[1]}</strong><small>${s[2]}</small></div>`).join("");
+ const tips=[];
+ tips.push("Teste primeiro no treinamento, com uma arma que você usa bastante.");
+ tips.push("Mude apenas um valor por vez para perceber qual ajuste ajudou.");
+ if(answers.problem==="over")tips.push("Como a mira passa do alvo, comece testando uma redução pequena na Geral e na Red Dot.");
+ else if(answers.problem==="under"||answers.problem==="body")tips.push("Como a mira fica abaixo do alvo, teste um aumento pequeno na Geral ou na Red Dot.");
+ else if(answers.problem==="shake")tips.push("Para reduzir a instabilidade, teste baixar um pouco a Geral e observe se o controle melhora.");
+ else tips.push("Observe se a mira acompanha o dedo sem ultrapassar o alvo; ajuste aos poucos.");
+ tips.push("O tamanho do botão é uma sugestão visual; ajuste também a posição e o HUD conforme seu conforto.");
+ $("tips").innerHTML=tips.map(t=>`<li>${escapeHtml(t)}</li>`).join("");
+ $("copySummary").textContent=configText();$("tuneFeedback").textContent="";
+}
+function adjust(type){
+ if(!config)return;
+ const old={...config};let msg="";
+ const change=(key,delta)=>config[key]=clamp(config[key]+delta,key==="sniper"?20:50,key==="sniper"?150:200);
+ if(type==="over"){change("general",-5);change("red",-6);msg="Reduzimos um pouco Geral e Red Dot para você testar.";}
+ if(type==="under"){change("general",5);change("red",5);msg="Aumentamos um pouco Geral e Red Dot para você testar.";}
+ if(type==="slow"){change("general",5);change("red",4);msg="Aumentamos um pouco a resposta geral e da Red Dot.";}
+ if(type==="fast"){change("general",-5);change("red",-4);msg="Reduzimos um pouco a resposta geral e da Red Dot.";}
+ if(type==="shake"){change("general",-6);change("red",-5);msg="Reduzimos um pouco Geral e Red Dot para priorizar controle.";}
+ if(type==="good"){msg="Ótimo! Mantenha por algumas partidas antes de fazer novas mudanças.";}
+ if(type!=="good")tuneHistory.push({type,before:old,after:{...config}});
+ renderResult();$("tune
