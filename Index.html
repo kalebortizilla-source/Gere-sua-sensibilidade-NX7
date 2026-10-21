@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NX7 SENSI | Free Fire</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b12;color:#fff;font-family:Arial,sans-serif}
+header{text-align:center;padding:30px 15px;background:linear-gradient(135deg,#101a35,#080b12);border-bottom:2px solid #00e5ff}
+.logo{font-size:45px;font-weight:900;color:#00e5ff;text-shadow:0 0 18px #0077ff}
+header p{color:#b9c7d9}
+main{max-width:650px;margin:auto;padding:18px}
+.card{background:#111827;border:1px solid #263b5d;border-radius:15px;padding:20px;margin-bottom:17px}
+h2{color:#00e5ff;margin-top:0}
+label{display:block;margin:17px 0 8px;color:#dce7f7}
+select{width:100%;padding:14px;background:#080d18;color:#fff;border:1px solid #315078;border-radius:9px;font-size:16px}
+button{width:100%;padding:14px;border:0;border-radius:9px;background:#00d9ff;color:#06111d;font-weight:bold;font-size:16px;margin-top:17px;cursor:pointer}
+button:active{transform:scale(.98)}
+.secondary{background:#26364e;color:#fff}
+.result{display:none}
+.stat{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #26364e}
+.stat strong{color:#00e5ff;font-size:19px}
+.note{font-size:13px;line-height:1.6;color:#aab8cc}
+footer{text-align:center;color:#74839b;padding:25px;font-size:12px}
+.tag{display:inline-block;background:#082c3a;color:#00e5ff;border-radius:20px;padding:7px 12px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">NX7 SENSI</div>
+<p>Encontre uma sensibilidade para o seu estilo de jogo 🎯</p>
+<span class="tag">FREE FIRE • CONFIGURADOR</span>
+</header>
+
+<main>
+<section class="card">
+<h2>🎮 Vamos conhecer teu estilo</h2>
+<p class="note">Responde às perguntas e recebe uma configuração inicial para testar no Free Fire. Não existe sensibilidade perfeita para todos os celulares.</p>
+
+<label for="phone">📱 Qual é o modelo do teu celular?</label>
+<select id="phone">
+<option value="normal">Outro modelo</option>
+<option value="motorola">Motorola</option>
+<option value="samsung">Samsung</option>
+<option value="xiaomi">Xiaomi / Redmi / POCO</option>
+<option value="iphone">iPhone</option>
+<option value="realme">Realme</option>
+<option value="infinix">Infinix / Tecno</option>
+</select>
+
+<label for="screen">Como tu sente a resposta da tela?</label>
+<select id="screen">
+<option value="fast">Muito rápida</option>
+<option value="medium" selected>Normal, equilibrada</option>
+<option value="slow">Um pouco lenta</option>
+</select>
+
+<label for="button">Qual tamanho de botão tu prefere?</label>
+<select id="button">
+<option value="small">Pequeno</option>
+<option value="medium" selected>Médio</option>
+<option value="large">Grande</option>
+</select>
+
+<label for="style">Como tu costuma jogar?</label>
+<select id="style">
+<option value="rush">Avançando pra cima dos inimigos</option>
+<option value="balanced">Um pouco de tudo</option>
+<option value="distance">De longe, usando mira</option>
+</select>
+
+<label for="aim">Quando tenta subir a mira, o que acontece?</label>
+<select id="aim">
+<option value="low">A mira fica no peito</option>
+<option value="good">Sobe na medida certa</option>
+<option value="high">Passa muito da cabeça</option>
+</select>
+
+<label for="experience">Como tu prefere a sensibilidade?</label>
+<select id="experience">
+<option value="stable">Mais controlada e estável</option>
+<option value="balanced" selected>Equilibrada</option>
+<option value="quick">Mais rápida nos movimentos</option>
+</select>
+
+<button onclick="generate()">GERAR MINHA SENSI ⚡</button>
+</section>
+
+<section class="card result" id="result">
+<h2>🔥 Tua configuração inicial</h2>
+<p id="summary" class="note"></p>
+<div class="stat"><span>Geral</span><strong id="general"></strong></div>
+<div class="stat"><span>Ponto vermelho</span><strong id="red"></strong></div>
+<div class="stat"><span>Mira 2x</span><strong id="two"></strong></div>
+<div class="stat"><span>Mira 4x</span><strong id="four"></strong></div>
+<div class="stat"><span>Mira AWM</span><strong id="awm"></strong></div>
+<div class="stat"><span>Olhadinha</span><strong id="look"></strong></div>
+<div class="stat"><span>Tamanho do botão</span><strong id="size"></strong></div>
+<button onclick="copyConfig()">📋 COPIAR CONFIGURAÇÃO</button>
+<button class="secondary" onclick="generate()">GERAR OUTRA CONFIGURAÇÃO</button>
+<p class="note">Esses valores são sugestões para começar, não uma garantia de capa. Testa no campo de treinamento e ajusta aos poucos.</p>
+</section>
+
+<section class="card">
+<h2>💡 Dicas da NX7</h2>
+<p class="note">• Testa a configuração no treinamento antes de jogar valendo.</p>
+<p class="note">• Se a mira passar da cabeça, reduz um pouco a Geral ou a mira usada.</p>
+<p class="note">• Se a mira ficar muito baixa, aumenta aos poucos.</p>
+<p class="note">• O resultado depende do aparelho, da versão do jogo e do teu jeito de jogar.</p>
+</section>
+</main>
+
+<footer>NX7 SENSI © 2026 • Feito para a comunidade Free Fire</footer>
+
+<script>
+function generate(){
+const phone=document.getElementById('phone').value;
+const screen=document.getElementById('screen').value;
+const button=document.getElementById('button').value;
+const style=document.getElementById('style').value;
+const aim=document.getElementById('aim').value;
+const experience=document.getElementById('experience').value;
+
+let general=175, red=165, two=150, four=135, awm=40, look=140;
+
+if(screen==='fast'){general-=15;red-=15;two-=12;four-=10;look-=12}
+if(screen==='slow'){general+=10;red+=8;two+=7;four+=5;look+=8}
+if(style==='rush'){general+=8;red+=5;look+=8}
+if(style==='distance'){general-=8;two+=3;four+=5;awm+=5}
+if(experience==='stable'){general-=10;red-=8;two-=6;four-=5}
+if(experience==='quick'){general+=8;red+=7;two+=5;look+=5}
+if(aim==='low'){general+=8;red+=6;two+=4}
+if(aim==='high'){general-=12;red-=10;two-=8;four-=6}
+if(phone==='iphone'){general-=3;red-=3}
+if(phone==='motorola'){general-=2}
+if(phone==='xiaomi'){general+=2}
+
+general=Math.max(80,Math.min(200,general));
+red=Math.max(75,Math.min(200,red));
+two=Math.max(65,Math.min(200,two));
+four=Math.max(50,Math.min(200,four));
+awm=Math.max(10,Math.min(100,awm));
+look=Math.max(70,Math.min(200,look));
+
+document.getElementById('general').textContent=general;
+document.getElementById('red').textContent=red;
+document.getElementById('two').textContent=two;
+document.getElementById('four').textContent=four;
+document.getElementById('awm').textContent=awm;
+document.getElementById('look').textContent=look;
+document.getElementById('size').textContent=
+button==='small'?'35':button==='medium'?'45':'55';
+
+document.getElementById('summary').textContent=
+'Configuração sugerida para teu estilo: '+
+(style==='rush'?'avanço':style==='distance'?'mira de longe':'jogo equilibrado')+
+'. Começa por estes valores e ajusta conforme tua mira.';
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function copyConfig(){
+const text='NX7 SENSI - FREE FIRE\n'+
+'Geral: '+document.getElementById('general').textContent+'\n'+
+'Ponto vermelho: '+document.getElementById('red').textContent+'\n'+
+'Mira 2x: '+document.getElementById('two').textContent+'\n'+
+'Mira 4x: '+document.getElementById('four').textContent+'\n'+
+'Mira AWM: '+document.getElementById('awm').textContent+'\n'+
+'Olhadinha: '+document.getElementById('look').textContent+'\n'+
+'Tamanho do botão: '+document.getElementById('size').textContent;
+
+if(navigator.clipboard && navigator.clipboard.writeText){
+navigator.clipboard.writeText(text).then(
+()=>alert('Configuração copiada!'),
+()=>fallbackCopy(text)
+);
+}else{fallbackCopy(text)}
+}
+
+function fallbackCopy(text){
+const area=document.createElement('textarea');
+area.value=text;
+document.body.appendChild(area);
+area.select();
+try{
+document.execCommand('copy');
+alert('Configuração copiada!');
+}catch(e){
+alert(text);
+}
+area.remove();
+}
+</script>
+</body>
+</html>
+
