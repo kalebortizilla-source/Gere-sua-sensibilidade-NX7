@@ -4,449 +4,629 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#06101f">
-<title>NX7 SENSI 2.0</title>
+<meta name="theme-color" content="#07152e">
+<meta name="description" content="NX7 SENSI: gerador personalizado de sensibilidade para Free Fire.">
+<title>NX7 SENSI 2.1</title>
 <style>
 :root {
-  --blue: #087cff;
-  --cyan: #35d7ff;
-  --bg: #040914;
-  --panel: #09172a;
-  --text: #edf7ff;
-  --muted: #9bb4d0;
+  --blue:#168cff;
+  --cyan:#42dcff;
+  --bg:#050b18;
+  --panel:#0c1830;
+  --line:#203c63;
+  --text:#f0f7ff;
+  --muted:#9db1ce;
 }
-* { box-sizing: border-box; }
+* {box-sizing:border-box}
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: var(--text);
-  background: radial-gradient(ellipse at top,#103764 0%,#040914 60%);
-  min-height: 100vh;
+  margin:0;
+  background:radial-gradient(ellipse at top,#102c55 0%,var(--bg) 55%);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
 }
 header {
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid var(--blue);
-  background: #040914;
+  text-align:center;
+  padding:30px 15px 20px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#0b2346aa,transparent);
 }
 .logo {
-  font-size: 29px;
-  font-weight: 1000;
-  font-style: italic;
-  text-shadow: 0 0 15px var(--blue);
+  display:inline-block;
+  padding:8px 18px;
+  border:2px solid var(--blue);
+  border-radius:12px;
+  color:var(--cyan);
+  font-size:32px;
+  font-weight:1000;
+  letter-spacing:4px;
+  text-shadow:0 0 20px #168cff99;
 }
-.logo span { color: var(--cyan); }
-.tag {
-  color: var(--cyan);
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-main { max-width: 850px; margin: auto; padding: 18px 13px 40px; }
-.hero {
-  border: 1px solid #1765a6;
-  border-radius: 17px;
-  padding: 25px 20px;
-  background: linear-gradient(120deg,#0c2b4e,#071426,#050b16);
-  position: relative;
-  overflow: hidden;
-}
-.hero:after {
-  content: "✦ ◈";
-  position: absolute;
-  right: 10px;
-  bottom: 0;
-  font-size: 75px;
-  color: #168cff25;
-}
-.hero h1 {
-  margin: 8px 0;
-  font-size: clamp(32px,8vw,49px);
-  line-height: 1.05;
-  font-style: italic;
-}
-.hero h1 span { color: var(--cyan); }
-.hero p { color: #c2d8ee; line-height: 1.6; }
-.chips { display:flex; gap:7px; flex-wrap:wrap; margin-top:15px; }
-.chip {
-  background:#071b31;
-  border:1px solid #20527e;
-  border-radius:7px;
-  padding:8px 10px;
-  font-size:11px;
-}
-.panel {
-  margin-top:16px;
+header h1 {margin:14px 0 7px;font-size:24px}
+header p,.muted {color:var(--muted);line-height:1.6}
+header p {margin:0;font-size:14px}
+main {max-width:760px;margin:auto;padding:18px 13px 40px}
+.card {
+  background:linear-gradient(145deg,#101f3a,#091427);
+  border:1px solid var(--line);
+  border-radius:16px;
   padding:19px;
-  border:1px solid #183c61;
-  border-radius:15px;
-  background:linear-gradient(150deg,#0a192b,#050c17);
+  margin:0 0 16px;
+  box-shadow:0 8px 28px #0003;
 }
-.top {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:center;
+h2 {font-size:18px;margin:0 0 17px}
+h3 {font-size:15px;color:var(--cyan)}
+.field {margin:0 0 17px}
+.field:last-child {margin-bottom:0}
+label,.label {
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:8px;
 }
-.top h2 { margin:0; font-size:18px; }
-.count { color:var(--cyan); font-size:11px; font-weight:bold; }
-.track {
-  height:6px;
-  background:#142840;
-  border-radius:8px;
-  overflow:hidden;
-  margin:17px 0;
+select,input[type="text"],input[type="number"] {
+  width:100%;
+  min-height:46px;
+  padding:12px;
+  border-radius:9px;
+  border:1px solid #29466d;
+  background:#071225;
+  color:white;
+  font-size:15px;
+  outline:none;
 }
-#bar {
-  width:0;
-  height:100%;
-  background:linear-gradient(90deg,var(--blue),var(--cyan));
-  transition:width .2s;
-}
-#question { font-size:20px; margin:12px 0 7px; }
-#hint { color:var(--muted); font-size:13px; line-height:1.5; }
+select:focus,input:focus {border-color:var(--cyan)}
+small {display:block;color:var(--muted);line-height:1.5;margin-top:6px}
 .options {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-  margin-top:17px;
+  gap:9px;
 }
-.option {
-  text-align:left;
-  min-height:62px;
-  padding:13px;
-  border:1px solid #1c4266;
-  border-radius:10px;
-  background:#071629;
-  color:var(--text);
-  cursor:pointer;
+.option {position:relative}
+.option input {
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
 }
-.option strong { display:block; font-size:14px; }
-.option small { display:block; color:var(--muted); margin-top:5px; }
-.option.selected {
-  border-color:var(--cyan);
-  background:#103354;
-  box-shadow:inset 0 0 0 1px #35d7ff35;
-}
-.actions { display:flex; gap:9px; margin-top:20px; }
-button:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
-.btn {
-  padding:13px 15px;
-  border:1px solid #24537b;
+.option span {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:10px;
+  text-align:center;
+  border:1px solid #29466d;
   border-radius:9px;
-  background:#0b2038;
+  background:#071225;
+  color:#d6e5fa;
+  font-size:13px;
+  cursor:pointer;
+  line-height:1.4;
+}
+.option input:checked + span {
+  border-color:var(--blue);
+  background:#123764;
   color:white;
-  font-weight:bold;
+  box-shadow:inset 0 0 0 1px var(--blue);
+}
+button {
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:15px;
+  background:linear-gradient(100deg,#0875ed,#20bfff);
+  color:white;
+  font-size:16px;
+  font-weight:900;
   cursor:pointer;
 }
-.btn.primary {
-  flex:1;
-  border:0;
-  background:linear-gradient(100deg,#086bfa,#08b8ff);
+button:active {transform:scale(.99)}
+.secondary {
+  background:#122440;
+  border:1px solid #315078;
+  margin-top:10px;
 }
-.btn:disabled { opacity:.4; cursor:not-allowed; }
-#result { display:none; }
-#result.show { display:block; }
-.stats {
+.result {display:none}
+.result.show {display:block}
+.result-head {
+  text-align:center;
+  padding:15px 0;
+}
+.result-head .logo {font-size:25px}
+.result-head p {color:var(--muted)}
+.stat-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:10px;
-  margin-top:15px;
 }
 .stat {
   padding:14px;
-  border:1px solid #1c4266;
-  background:#071629;
-  border-radius:10px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#071225;
 }
-.stat span { display:block; color:var(--muted); font-size:12px; }
-.stat strong { display:block; font-size:27px; color:var(--cyan); margin-top:5px; }
-.note { color:var(--muted); font-size:12px; line-height:1.6; }
-footer { text-align:center; color:#7793b0; font-size:11px; padding:20px 5px; }
-@media(max-width:480px) {
-  header { padding:14px 12px; }
-  .logo { font-size:25px; }
-  .options { grid-template-columns:1fr; }
-  .hero { padding:20px 15px; }
-  .panel { padding:15px; }
+.stat span {display:block;color:var(--muted);font-size:12px}
+.stat strong {display:block;font-size:29px;color:var(--cyan);margin-top:7px}
+.stat small {font-size:11px}
+.bar {
+  height:5px;
+  background:#1c2b43;
+  border-radius:5px;
+  margin-top:10px;
+  overflow:hidden;
+}
+.bar i {display:block;height:100%;background:var(--blue)}
+.notice {
+  padding:12px;
+  border-radius:9px;
+  background:#102749;
+  border-left:3px solid var(--blue);
+  color:#d7e9ff;
+  font-size:13px;
+  line-height:1.6;
+  margin-top:15px;
+}
+footer {text-align:center;color:var(--muted);font-size:12px;padding:20px}
+.hidden {display:none!important}
+@media(min-width:560px) {
+  .options {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stat-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 </style>
 </head>
 <body>
 <header>
-  <div>
-    <div class="logo">NX<span style="color:#35d7ff">7</span> SENSI</div>
-    <div class="tag">SENSITIVITY GENERATOR 2.0</div>
-  </div>
-  <div class="tag">● ONLINE</div>
+  <div class="logo">NX7</div>
+  <h1>NX7 SENSI 2.1</h1>
+  <p>FREE FIRE • SUA MIRA, SEU ESTILO</p>
+  <p>Configuração inicial feita para o seu jeito de jogar.</p>
 </header>
 
 <main>
-<section class="hero">
-  <div class="tag">⚡ CALIBRAÇÃO PERSONALIZADA</div>
-  <h1>SUA MIRA.<br><span>SEU ESTILO.</span></h1>
-  <p>Responde às perguntas sobre teu toque, teus movimentos e o comportamento da mira. O NX7 vai montar uma configuração inicial para tu testar no Free Fire.</p>
-  <div class="chips">
-    <div class="chip">🎯 Mira personalizada</div>
-    <div class="chip">📱 Perfil do celular</div>
-    <div class="chip">💙 Estilo NX7</div>
-  </div>
+<form id="sensiForm">
+
+<section class="card">
+<h2>📱 01 — Seu celular</h2>
+
+<div class="field">
+<label for="brand">Marca do aparelho</label>
+<select id="brand" required>
+<option value="">Escolha a marca</option>
+<option>Motorola</option>
+<option>Samsung</option>
+<option>Xiaomi</option>
+<option>Redmi</option>
+<option>POCO</option>
+<option>Apple</option>
+<option>Realme</option>
+<option>Infinix</option>
+<option>Tecno</option>
+<option>ASUS</option>
+<option>Outro</option>
+</select>
+</div>
+
+<div class="field">
+<label for="model">Modelo específico</label>
+<select id="model" required>
+<option value="">Primeiro escolha a marca</option>
+</select>
+<small>Escolha o modelo mais próximo do seu. Se não aparecer, selecione "Outro modelo".</small>
+</div>
+
+<div class="field hidden" id="customWrap">
+<label for="customModel">Digite o modelo</label>
+<input id="customModel" type="text" placeholder="Ex.: meu celular">
+</div>
+
+<div class="field">
+<label for="refresh">Taxa de atualização da tela</label>
+<select id="refresh">
+<option value="60">60 Hz</option>
+<option value="90">90 Hz</option>
+<option value="120" selected>120 Hz</option>
+<option value="144">144 Hz ou mais</option>
+<option value="0">Não sei</option>
+</select>
+<small>Se não souber, pode deixar "Não sei". O valor não é detectado automaticamente.</small>
+</div>
+
+<div class="field">
+<label for="performance">Como o Free Fire roda no celular?</label>
+<select id="performance">
+<option value="smooth">Fluido, quase sem travar</option>
+<option value="normal" selected>Normal, às vezes cai o FPS</option>
+<option value="lag">Trava ou dá bastante queda de FPS</option>
+</select>
+</div>
+
+<div class="field">
+<label for="touch">Como é a resposta do toque?</label>
+<div class="options">
+<label class="option"><input type="radio" name="touch" value="fast"><span>Muito rápida</span></label>
+<label class="option"><input type="radio" name="touch" value="normal" checked><span>Normal</span></label>
+<label class="option"><input type="radio" name="touch" value="slow"><span>Mais lenta</span></label>
+</div>
+</div>
 </section>
 
-<section class="panel" id="quiz">
-  <div class="top">
-    <h2>CALIBRAÇÃO NX7</h2>
-    <div class="count" id="counter">PERGUNTA 1/9</div>
-  </div>
-  <div class="track"><div id="bar"></div></div>
-  <h3 id="question"></h3>
-  <p id="hint"></p>
-  <div class="options" id="options"></div>
-  <div class="actions">
-    <button class="btn" id="back" disabled>← VOLTAR</button>
-    <button class="btn primary" id="next" disabled>PRÓXIMA →</button>
-  </div>
+<section class="card">
+<h2>🎯 02 — Seu jeito de puxar a mira</h2>
+
+<div class="field">
+<label>Como você arrasta o dedo para subir a mira?</label>
+<div class="options">
+<label class="option"><input type="radio" name="drag" value="short" checked><span>Arrasto curto</span></label>
+<label class="option"><input type="radio" name="drag" value="medium"><span>Arrasto médio</span></label>
+<label class="option"><input type="radio" name="drag" value="long"><span>Arrasto longo</span></label>
+</div>
+</div>
+
+<div class="field">
+<label>Qual é a força do seu movimento?</label>
+<div class="options">
+<label class="option"><input type="radio" name="force" value="light"><span>Leve</span></label>
+<label class="option"><input type="radio" name="force" value="medium" checked><span>Média</span></label>
+<label class="option"><input type="radio" name="force" value="strong"><span>Forte</span></label>
+</div>
+</div>
+
+<div class="field">
+<label>Como você costuma jogar?</label>
+<div class="options">
+<label class="option"><input type="radio" name="style" value="rush" checked><span>Avanço e curta distância</span></label>
+<label class="option"><input type="radio" name="style" value="balanced"><span>Um pouco de tudo</span></label>
+<label class="option"><input type="radio" name="style" value="distance"><span>Mais distância</span></label>
+</div>
+</div>
+
+<div class="field">
+<label>O que acontece quando você puxa a mira?</label>
+<div class="options">
+<label class="option"><input type="radio" name="problem" value="over"><span>Passa da cabeça</span></label>
+<label class="option"><input type="radio" name="problem" value="under"><span>Fica abaixo da cabeça</span></label>
+<label class="option"><input type="radio" name="problem" value="shake"><span>Fica tremendo</span></label>
+<label class="option"><input type="radio" name="problem" value="good" checked><span>Está quase certa</span></label>
+</div>
+</div>
 </section>
 
-<section class="panel" id="result">
-  <div class="top">
-    <h2>⚡ TUA SENSI NX7</h2>
-    <div class="count">RESULTADO</div>
-  </div>
-  <p id="profile"></p>
-  <div class="stats" id="stats"></div>
-  <p class="note">Os valores são uma sugestão inicial calculada a partir das respostas, não uma garantia de capa. Testa no treinamento e ajusta aos poucos. Sensibilidade mínima: 20. Máxima: 200.</p>
-  <div class="actions">
-    <button class="btn primary" id="copy">📋 COPIAR RESULTADO</button>
-    <button class="btn" id="restart">REFAZER</button>
-  </div>
+<section class="card">
+<h2>🕹️ 03 — Controles e mira</h2>
+
+<div class="field">
+<label>Qual é o tamanho atual do botão de tiro?</label>
+<div class="options">
+<label class="option"><input type="radio" name="buttonSize" value="small"><span>Pequeno</span></label>
+<label class="option"><input type="radio" name="buttonSize" value="medium" checked><span>Médio</span></label>
+<label class="option"><input type="radio" name="buttonSize" value="large"><span>Grande</span></label>
+</div>
+</div>
+
+<div class="field">
+<label>Quantos dedos você usa para jogar?</label>
+<div class="options">
+<label class="option"><input type="radio" name="fingers" value="2" checked><span>2 dedos</span></label>
+<label class="option"><input type="radio" name="fingers" value="3"><span>3 dedos</span></label>
+<label class="option"><input type="radio" name="fingers" value="4"><span>4 dedos</span></label>
+<label class="option"><input type="radio" name="fingers" value="5"><span>5 ou mais</span></label>
+</div>
+</div>
+
+<div class="field">
+<label>Qual mira você usa mais?</label>
+<div class="options">
+<label class="option"><input type="radio" name="aim" value="red" checked><span>Ponto vermelho</span></label>
+<label class="option"><input type="radio" name="aim" value="scope2"><span>Mira 2x</span></label>
+<label class="option"><input type="radio" name="aim" value="scope4"><span>Mira 4x</span></label>
+<label class="option"><input type="radio" name="aim" value="sniper"><span>AWM / precisão</span></label>
+</div>
+</div>
+
+<div class="field">
+<label for="dpi">DPI (opcional)</label>
+<input id="dpi" type="number" min="100" max="1000" placeholder="Deixe vazio se não souber">
+<small>Não precisa alterar o DPI. Ele não é obrigatório e não é usado como medida exata da sensibilidade.</small>
+</div>
 </section>
-<footer>NX7 SENSI 2.0 • SUA MIRA, SEU ESTILO</footer>
+
+<button type="submit">⚡ GERAR MINHA SENSI</button>
+</form>
+
+<section class="card result" id="result" aria-live="polite">
+<div class="result-head">
+<div class="logo">NX7</div>
+<h2>Sua configuração personalizada</h2>
+<p id="deviceSummary"></p>
+</div>
+
+<div class="stat-grid" id="stats"></div>
+
+<div class="notice" id="explanation"></div>
+<div class="notice">
+<strong>Importante:</strong> estes valores são uma sugestão inicial calculada pelas suas respostas, não uma garantia de capa. Teste no treinamento e ajuste aos poucos.
+</div>
+
+<button class="secondary" type="button" id="copyBtn">📋 COPIAR CONFIGURAÇÃO</button>
+<button class="secondary" type="button" id="againBtn">↻ REFAZER QUESTIONÁRIO</button>
+</section>
 </main>
 
+<footer>NX7 SENSI • Projeto independente de personalização para Free Fire.</footer>
+
 <script>
-const questions = [
-{
- q:"Como tu costuma puxar a mira?",
- h:"Pensa no movimento que tu faz com o dedo.",
- a:[
- ["Leve e curtinho","Movimento pequeno"],
- ["Rápido e firme","Puxada acelerada"],
- ["Longo e controlado","Arrasto maior"],
- ["Depende da situação","Misturo movimentos"]
- ], v:[-7,10,-3,0]
-},
-{
- q:"Quando tu puxa a mira, o que acontece?",
- h:"Escolhe o que mais se parece com tua experiência.",
- a:[
- ["Para antes do alvo","Preciso subir um pouco mais"],
- ["Passa do alvo","A mira sobe demais"],
- ["Fica perto do alvo","Só precisa de ajuste"],
- ["Varia muito","Nem sempre fica igual"]
- ], v:[12,-12,0,-3]
-},
-{
- q:"Como tu sente a resposta ao toque?",
- h:"Considera a velocidade que tu percebe na tela.",
- a:[
- ["Muito rápida","Responde com facilidade"],
- ["Rápida","Movimento ágil"],
- ["Normal","Resposta equilibrada"],
- ["Mais lenta","Preciso arrastar mais"]
- ], v:[-10,-5,2,10]
-},
-{
- q:"Qual tamanho de botão de tiro tu prefere?",
- h:"O tamanho pode mudar teu conforto ao tocar.",
- a:[
- ["Pequeno","Mais espaço livre"],
- ["Médio","Equilíbrio"],
- ["Grande","Área maior para tocar"]
- ], v:[-3,0,3]
-},
-{
- q:"Quanta força tu usa para puxar a mira?",
- h:"Pensa na intensidade do movimento.",
- a:[
- ["Pouca força","Puxada suave"],
- ["Força média","Movimento firme"],
- ["Muita força","Puxada forte"]
- ], v:[-7,0,8]
-},
-{
- q:"Como a mira se comporta ao acompanhar um alvo?",
- h:"Escolhe o problema mais comum.",
- a:[
- ["Fica tremendo","Quero mais controle"],
- ["Fica pesada","Quero mais agilidade"],
- ["Acompanha bem","Quero ajustes pequenos"],
- ["Perco o controle","Quero equilíbrio"]
- ], v:[-8,9,0,-2]
-},
-{
- q:"Qual sensação tu quer priorizar?",
- h:"Não existe uma configuração igual para todo mundo.",
- a:[
- ["Mais controle","Movimento mais contido"],
- ["Mais velocidade","Resposta mais rápida"],
- ["Equilíbrio","Meio-termo"]
- ], v:[-5,8,0]
-},
-{
- q:"Como tu segura o celular durante a partida?",
- h:"Escolhe o jeito que mais combina contigo.",
- a:[
- ["Uma mão em cada lado","Pegada tradicional"],
- ["Uso vários dedos","Mais de um dedo na tela"],
- ["Mudo a posição","Depende da partida"]
- ], v:[0,2,0]
-},
-{
- q:"Qual modelo de resposta combina com teu celular?",
- h:"Não precisa saber as especificações técnicas.",
- a:[
- ["Parece muito sensível","Qualquer toque já mexe"],
- ["Responde normalmente","Consigo controlar"],
- ["Preciso arrastar bastante","Sinto a mira mais pesada"],
- ["Não tenho certeza","Prefiro uma base equilibrada"]
- ], v:[-7,0,8,0]
-}
-];
-
-let current = 0;
-const answers = Array(questions.length).fill(null);
-const $ = id => document.getElementById(id);
-
-function render() {
- const item = questions[current];
- $("counter").textContent = `PERGUNTA ${current+1}/${questions.length}`;
- $("bar").style.width = `${current/questions.length*100}%`;
- $("question").textContent = item.q;
- $("hint").textContent = item.h;
- $("options").innerHTML = "";
-
- item.a.forEach((option,index) => {
-   const button = document.createElement("button");
-   button.className = "option" + (answers[current] === index ? " selected" : "");
-   const title = document.createElement("strong");
-   title.textContent = option[0];
-   const description = document.createElement("small");
-   description.textContent = option[1];
-   button.append(title,description);
-   button.onclick = () => {
-     answers[current] = index;
-     render();
-   };
-   $("options").appendChild(button);
- });
-
- $("back").disabled = current === 0;
- $("next").disabled = answers[current] === null;
- $("next").textContent = current === questions.length-1
-   ? "GERAR MINHA SENSI →" : "PRÓXIMA →";
-}
-
-function clamp(value) {
- return Math.max(20,Math.min(200,Math.round(value)));
-}
-
-function generate() {
- let score = 0;
- answers.forEach((answer,index) => {
-   score += questions[index].v[answer];
- });
- score = Math.max(-25,Math.min(25,score));
-
- const base = {
-   geral:142,
-   red:132,
-   x2:122,
-   x4:108,
-   sniper: seventy(),
-   look:100
- };
- function seventy(){return 70;}
-
- const values = {
-   "Geral":clamp(base.geral+score),
-   "Ponto vermelho":clamp(base.red+Math.round(score*.85)),
-   "Mira 2x":clamp(base.x2+Math.round(score*.75)),
-   "Mira 4x":clamp(base.x4+Math.round(score*.65)),
-   "AWM / Sniper":clamp(base.sniper+Math.round(score*.4)),
-   "Olhadinha":clamp(base.look+Math.round(score*.6))
- };
-
- const priority = answers[6]===0 ? "controle" :
-                  answers[6]===1 ? "velocidade" : "equilíbrio";
- $("profile").textContent =
-   `Perfil calculado com prioridade em ${priority}. Usa os valores como ponto de partida e testa no campo de treinamento.`;
-
- $("stats").innerHTML = "";
- Object.entries(values).forEach(([label,value]) => {
-   const card = document.createElement("div");
-   card.className = "stat";
-   const name = document.createElement("span");
-   name.textContent = label;
-   const number = document.createElement("strong");
-   number.textContent = value;
-   card.append(name,number);
-   $("stats").appendChild(card);
- });
-
- window.nx7Values = values;
- $("bar").style.width = "100%";
- $("quiz").style.display = "none";
- $("result").classList.add("show");
-}
-
-$("next").onclick = () => {
- if (answers[current] === null) return;
- if (current < questions.length-1) {
-   current++;
-   render();
- } else {
-   generate();
- }
+const models = {
+  Motorola: [
+    ["Edge 70 Fusion",120],
+    ["Edge 60 Fusion",120],
+    ["Edge 50 Fusion",120],
+    ["Edge 50 Pro",144],
+    ["Edge 40 Neo",144],
+    ["Edge 40",144],
+    ["Edge 30 Fusion",144],
+    ["Moto G86",120],
+    ["Moto G85",120],
+    ["Moto G75",120],
+    ["Moto G55",120],
+    ["Moto G54",120],
+    ["Moto G34",120],
+    ["Moto G84",120],
+    ["Moto G73",120],
+    ["Moto G53",120],
+    ["Moto G24",90],
+    ["Moto G14",60],
+    ["Outro modelo",0]
+  ],
+  Samsung: [
+    ["Galaxy A56",120],["Galaxy A55",120],
+    ["Galaxy A54",120],["Galaxy A36",120],
+    ["Galaxy A35",120],["Galaxy A34",120],
+    ["Galaxy A26",120],["Galaxy A25",120],
+    ["Galaxy A16",90],["Galaxy A15",90],
+    ["Galaxy A06",60],["Galaxy A05s",90],
+    ["Galaxy A73",120],["Galaxy A53",120],
+    ["Galaxy S25",120],["Galaxy S24",120],
+    ["Galaxy S23",120],["Galaxy S22",120],
+    ["Galaxy S21",120],["Outro modelo",0]
+  ],
+  Xiaomi: [
+    ["Xiaomi 15",120],["Xiaomi 14",120],
+    ["Xiaomi 13T Pro",144],["Xiaomi 13T",144],
+    ["Xiaomi 12",120],["Outro modelo",0]
+  ],
+  Redmi: [
+    ["Redmi Note 14 Pro+",120],["Redmi Note 14 Pro",120],
+    ["Redmi Note 14",120],["Redmi Note 13 Pro+",120],
+    ["Redmi Note 13 Pro",120],["Redmi Note 13",120],
+    ["Redmi Note 12",120],["Redmi 14C",120],
+    ["Redmi 13C",90],["Redmi 12",90],["Outro modelo",0]
+  ],
+  POCO: [
+    ["POCO F7",120],["POCO F6 Pro",120],
+    ["POCO F6",120],["POCO F5",120],
+    ["POCO X7 Pro",120],["POCO X6 Pro",120],
+    ["POCO X6",120],["POCO M7 Pro",120],
+    ["POCO M6 Pro",120],["Outro modelo",0]
+  ],
+  Apple: [
+    ["iPhone 17 Pro / Pro Max",120],
+    ["iPhone 17",120],["iPhone 16 Pro / Pro Max",120],
+    ["iPhone 16 / 16 Plus",60],
+    ["iPhone 15 Pro / Pro Max",120],
+    ["iPhone 15 / 15 Plus",60],
+    ["iPhone 14 Pro / Pro Max",120],
+    ["iPhone 14 / 14 Plus",60],
+    ["iPhone 13 Pro / Pro Max",120],
+    ["iPhone 13 / 13 mini",60],
+    ["Outro modelo",0]
+  ],
+  Realme: [
+    ["Realme GT 7",120],["Realme GT 6",120],
+    ["Realme 14 Pro+",120],["Realme 13 Pro+",120],
+    ["Realme 12 Pro+",120],["Realme C75",90],
+    ["Realme C67",90],["Outro modelo",0]
+  ],
+  Infinix: [
+    ["GT 30 Pro",144],["GT 20 Pro",144],
+    ["Note 50 Pro",144],["Note 40 Pro",120],
+    ["Hot 50 Pro+",120],["Hot 40 Pro",120],
+    ["Outro modelo",0]
+  ],
+  Tecno: [
+    ["Pova 7 Pro",144],["Pova 6 Pro",120],
+    ["Camon 30 Pro",144],["Spark 30 Pro",120],
+    ["Outro modelo",0]
+  ],
+  ASUS: [
+    ["ROG Phone 9",185],["ROG Phone 8",165],
+    ["ROG Phone 7",165],["Zenfone 11 Ultra",144],
+    ["Outro modelo",0]
+  ],
+  Outro: [["Outro modelo",0]]
 };
 
-$("back").onclick = () => {
- if (current > 0) {
-   current--;
-   render();
- }
-};
+const brand = document.getElementById("brand");
+const model = document.getElementById("model");
+const customWrap = document.getElementById("customWrap");
+const customModel = document.getElementById("customModel");
+const refresh = document.getElementById("refresh");
 
-$("restart").onclick = () => {
- current = 0;
- answers.fill(null);
- $("result").classList.remove("show");
- $("quiz").style.display = "block";
- render();
- window.scrollTo({top:0,behavior:"smooth"});
-};
+brand.addEventListener("change", () => {
+  model.innerHTML = '<option value="">Escolha o modelo</option>';
+  (models[brand.value] || []).forEach(item => {
+    const option = document.createElement("option");
+    option.value = item[0];
+    option.textContent = item[0];
+    option.dataset.hz = item[1];
+    model.appendChild(option);
+  });
+  customWrap.classList.add("hidden");
+});
 
-$("copy").onclick = async () => {
- const text = "NX7 SENSI 2.0\n" +
-   Object.entries(window.nx7Values)
-   .map(([key,value]) => `${key}: ${value}`)
-   .join("\n");
+model.addEventListener("change", () => {
+  const selected = model.options[model.selectedIndex];
+  const isOther = model.value === "Outro modelo";
+  customWrap.classList.toggle("hidden", !isOther);
+  customModel.required = isOther;
+  if (!isOther && selected && Number(selected.dataset.hz) > 0) {
+    refresh.value = String(selected.dataset.hz);
+  }
+});
 
- try {
-   await navigator.clipboard.writeText(text);
- } catch(error) {
-   const area = document.createElement("textarea");
-   area.value = text;
-   document.body.appendChild(area);
-   area.select();
-   document.execCommand("copy");
-   area.remove();
- }
- $("copy").textContent = "COPIADO! ✓";
-};
+function selected(name) {
+  return document.querySelector('input[name="' + name + '"]:checked')?.value;
+}
 
-render();
-</script>
-</body>
-</html>
+function clamp(value, min = 20, max = 200) {
+  return Math.round(Math.max(min, Math.min(max, value)));
+}
+
+function calculate() {
+  const hz = Number(refresh.value);
+  const perf = document.getElementById("performance").value;
+  const touch = selected("touch");
+  const drag = selected("drag");
+  const force = selected("force");
+  const style = selected("style");
+  const problem = selected("problem");
+  const fingers = Number(selected("fingers"));
+  const aim = selected("aim");
+  const btn = selected("buttonSize");
+
+  // Base inicial: o cálculo varia de acordo com as respostas.
+  let base = 128;
+
+  if (hz === 60) base -= 7;
+  if (hz === 90) base -= 3;
+  if (hz >= 144) base += 2;
+  if (touch === "fast") base -= 5;
+  if (touch === "slow") base += 5;
+  if (perf === "lag") base -= 8;
+  if (perf === "smooth") base += 2;
+  if (drag === "short") base += 8;
+  if (drag === "long") base -= 8;
+  if (force === "light") base += 7;
+  if (force === "strong") base -= 7;
+  if (style === "rush") base += 5;
+  if (style === "distance") base -= 7;
+  if (fingers >= 4) base -= 2;
+  if (btn === "small") base += 3;
+  if (btn === "large") base -= 3;
+  if (problem === "over") base -= 15;
+  if (problem === "under") base += 12;
+  if (problem === "shake") base -= 10;
+
+  const general = clamp(base);
+  const red = clamp(base + (aim === "red" ? 5 : 0) + 5);
+  const scope2 = clamp(base - 8 + (aim === "scope2" ? 4 : 0));
+  const scope4 = clamp(base - 20 + (aim === "scope4" ? 4 : 0));
+  const sniper = clamp(base - 34 + (aim === "sniper" ? 4 : 0));
+  const freeLook = clamp(base - 12);
+
+  let button = 40;
+  if (btn === "small") button = 35;
+  if (btn === "large") button = 50;
+  if (fingers >= 4) button -= 2;
+  if (problem === "shake") button -= 2;
+  button = Math.max(25, Math.min(60, button));
+
+  return {general, red, scope2, scope4, sniper, freeLook, button};
+}
+
+function stat(label, value, description = "") {
+  return `
+    <div class="stat">
+      <span>${label}</span>
+      <strong>${value}</strong>
+      ${description ? `<small>${description}</small>` : ""}
+      <div class="bar"><i style="width:${Math.min(100, value / 200 * 100)}%"></i></div>
+    </div>`;
+}
+
+let lastConfig = "";
+
+document.getElementById("sensiForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (!brand.value || !model.value) {
+    alert("Escolha a marca e o modelo do celular.");
+    return;
+  }
+
+  if (model.value === "Outro modelo" && !customModel.value.trim()) {
+    alert("Digite o modelo do celular.");
+    customModel.focus();
+    return;
+  }
+
+  const cfg = calculate();
+  const device = model.value === "Outro modelo"
+    ? customModel.value.trim()
+    : model.value;
+  const dpi = document.getElementById("dpi").value;
+
+  document.getElementById("deviceSummary").textContent =
+    brand.value + " " + device + " • " +
+    (refresh.value === "0" ? "Hz não informado" : refresh.value + " Hz");
+
+  document.getElementById("stats").innerHTML =
+    stat("Geral", cfg.general) +
+    stat("Ponto vermelho", cfg.red) +
+    stat("Mira 2x", cfg.scope2) +
+    stat("Mira 4x", cfg.scope4) +
+    stat("AWM", cfg.sniper) +
+    stat("Olhadinha", cfg.freeLook) +
+    stat("Botão de tiro", cfg.button, "Tamanho sugerido (%)");
+
+  let explanation = "Os valores consideram seu aparelho e suas respostas.";
+  if (selected("problem") === "over") {
+    explanation += " Como a mira passa da cabeça, a configuração reduz um pouco a sensibilidade.";
+  } else if (selected("problem") === "under") {
+    explanation += " Como a mira fica abaixo da cabeça, a configuração aumenta um pouco a sensibilidade.";
+  } else if (selected("problem") === "shake") {
+    explanation += " Como a mira treme, a configuração favorece um movimento mais controlado.";
+  }
+  explanation += " Faça pequenos ajustes no treinamento se necessário.";
+
+  if (dpi) explanation += " DPI informado: " + dpi + " (não alterado).";
+
+  document.getElementById("explanation").textContent = explanation;
+
+  lastConfig =
+    "NX7 SENSI 2.1\n" +
+    "Celular: " + brand.value + " " + device + "\n" +
+    "Taxa da tela: " + (refresh.value === "0" ? "Não informada" : refresh.value + " Hz") + "\n" +
+    "Geral: " + cfg.general + "\n" +
+    "Ponto vermelho: " + cfg.red + "\n" +
+    "Mira 2x: " + cfg.scope2 + "\n" +
+    "Mira 4x: " + cfg.scope4 + "\n" +
+    "AWM: " + cfg.sniper + "\n" +
+    "Olhadinha: " + cfg.freeLook + "\n" +
+    "Botão de tiro sugerido: " + cfg.button + "%\n" +
+    (dpi ? "DPI informado: " + dpi + "\n" : "") +
+    "\nValores iniciais personalizados. Ajuste no treinamento.";
+
+  const result = document.getElementById("result");
+  result.classList.add("show");
+  result.scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+document.getElementById("copyBtn").addEventListener("click", async () => {
+  if (!lastConfig) return;
+  try {
+    await navigator.clipboard.writeText(lastConfig);
+    document.getElementById("copyBtn").textContent = "✓ CONFIGURAÇÃO COPIADA";
+  } catch {
+    const area = document.createElement("textarea");
+    area.value = lastConfig;
+    document.body.appendChild(area);
+    area.select();
+    const copied = document.execCommand("copy");
+    area.remove();
+    document.getElementById("copyBtn").textContent =
+      copied ? "✓ CONFIGURAÇÃO COPIADA" : "Selecione e copie o resultado";
+  }
+});
+
+document.getElementById("againBtn").addEventListener("click", () => {
+  document.getElementById("sensiForm").reset();
+  document.getElementById("result").classList.remove
